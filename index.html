@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app" @dblclick.ctrl.prevent="addNote" @mousemove="mv"  @mouseup="mu">
+    <div class="header"></div>
+    <div class="content">
+        <div :class="`note ${v.theme} ${i==moveEvent.index?'active':''}`" v-for="(v,i) in notes" :key="v.id" :style="{top:v.top+'px',left:v.left+'px'}">
+            <h3 class="title" @mousedown="md(i,$event)">{{v.title}}</h3>
+            <div class="content">
+                <textarea @keyup.stop="save" v-model="v.content"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="index.js"></script>
+</html>
